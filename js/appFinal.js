@@ -14,6 +14,10 @@ const finalizarCompra = document.getElementById('finalizarCompra');
 const prodCompra = document.getElementById('prodCompra');
 const returnCompra = document.getElementById('returnCompra');
 const totalCompra = document.getElementById('totalCompra');
+const enviarPedido = document.getElementById('formPedido');
+const clientName = document.getElementById('nameClient');
+const clientSurame = document.getElementById('surnameClient');
+const emailClient = document.getElementById('emailClient');
 
 let carrito = [];
 let verProducto = [];
@@ -37,16 +41,13 @@ async function traerProductos(){
     try{
         const prod = await fetch('../productos.json');
         const resp2 = await prod.json();
-        localStorage.setItem('prod', JSON.stringify(resp2))
+        localStorage.setItem('stockProd', JSON.stringify(resp2))
     }   
     catch(e){
         console.log(e)
     }
 }
-stockRelojes = JSON.parse(localStorage.getItem('prod'))
-
-console.log(stockRelojes)
-
+stockRelojes = JSON.parse(localStorage.getItem('stockProd'))
 
 const linkDolarBlue = "https://api.bluelytics.com.ar/v2/latest";
 const DOMDolar= document.addEventListener('DOMContentLoaded', traerDolar);
@@ -79,9 +80,6 @@ if(contenedorProductos){
                     <h2>${prod.modelo}</h2>
                     <p>Precio: U$ <b>${prod.precio}</b></p>
                     <p>Precio: AR$ <b>${precioArs}</b></p>
-                </div>
-                <div class="contMG">
-                    <img src="./assets/icons/meGusta.png" alt="icono me gusta" title="icono me gusta">
                 </div>
             </div>
             <button id="add${prod.id}" class="addCarrito">Añadir al Carrito</button>
@@ -217,10 +215,9 @@ if(prodCompra){
     actualizarCarrito();
 }
 
-const finCompra = () => {
+function finCompra() {
     prodCompra.innerHTML= "";
     carrito.forEach((prod) =>{
-        console.log(prod)
         const trCompra = document.createElement('tr');
         trCompra.classList.add('carritoInfo');
         let precioArs = prod.precio * cotizacionUsd;;
@@ -253,4 +250,30 @@ if(returnCompra){
 }
 
 
+if(enviarPedido){
+    enviarPedido.addEventListener("submit", submitPedido)
+}
+
+
+
+function submitPedido(e){
+    e.preventDefault()
+    if(clientName.value === '' || clientSurame.value === '' || emailClient.value === ''){
+        Swal.fire({
+            title: "Por favor completa tus datos",
+            text: "Completalos para finalizar el pedido",
+            icon:   "error",
+            confirmButtonText: "Aceptar",
+        })
+    }else{
+        Swal.fire({
+            title: "Pedido Recibido",
+            text: `Gracias ${clientName.value} ${clientSurame.value} por tu pedido`,
+            icon:   "success",
+        })
+        console.log('Pedido Recibido')
+        enviarPedido.reset()
+        carrito = [];
+    }
+}
 

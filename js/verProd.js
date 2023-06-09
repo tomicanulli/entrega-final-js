@@ -50,3 +50,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
         mainProducto.appendChild(prodDetails)
     }
 })
+

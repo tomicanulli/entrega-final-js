@@ -482,6 +482,7 @@ h1, h2, .h1, .h2, h4, p, .p{
         border-radius: 20px 20px 0 0; }
       .catalogo .contProd .priceCont {
         width: 100%;
+        color: #fff;
         display: flex; }
         .catalogo .contProd .priceCont .prodDet {
           width: 70%;
@@ -861,6 +862,8 @@ h1, h2, .h1, .h2, h4, p, .p{
         .recomWatch .contProdR button {
           width: 100%;
           background-color: #25D366;
+          color: #fff;
+
           margin-bottom: 4px;
           border: none;
           border-radius: 0 0 20px 20px; }
