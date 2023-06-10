@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', traerProductos )
 
 async function traerProductos(){
     try{
-        const prod = await fetch('../productos.json');
+        const prod = await fetch('./productos.json');
         const resp2 = await prod.json();
         localStorage.setItem('stockProd', JSON.stringify(resp2))
         stockRelojes = JSON.parse(localStorage.getItem('stockProd'))
