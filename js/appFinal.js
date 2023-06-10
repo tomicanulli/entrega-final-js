@@ -1,5 +1,4 @@
 let stockRelojes = [];
-
 let cotizaciones = [] ;
 let cotizacionUsd;
 const contenedorProductos = document.getElementById('contProd');
@@ -39,8 +38,8 @@ document.addEventListener('DOMContentLoaded', traerProductos )
 
 async function traerProductos(){
     try{
-        const prod = await fetch('./productos.json');
-        stockRelojes = await prod.json();
+        const relojes = await fetch('./productos.json');
+        stockRelojes = await relojes.json();
         mostrarProd()
     }   
     catch(e){
@@ -110,9 +109,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 })
 
 const addCarrito = (prodId) => {
-    
-    const repeat = carrito.some (prod => prod.id === prodId)
-    
+    const repeat = carrito.some (prod => prod.id === prodId)    
     if (repeat){
         const prod = carrito.map(prod =>{
             if(prod.id === prodId){
@@ -122,6 +119,7 @@ const addCarrito = (prodId) => {
     }else {
         const itemCarrito = stockRelojes.find((prod) => prod.id === prodId );
         carrito.push(itemCarrito);
+
     }
     actualizarCarrito();
 }
@@ -131,7 +129,7 @@ const actualizarCarrito = () => {
     carrito.forEach((prod) =>{
         const divCarrito = document.createElement('div');
         divCarrito.classList.add('contRecom');
-        let precioArs = prod.precio * 490;;
+        let precioArs = prod.precio * cotizacionUsd;
         divCarrito.innerHTML = `
                 <div class="imgCont">
                     <img class="img-prod" src="../assets/img/destacado-${prod.id}.PNG" alt="${prod.marca} ${prod.modelo}" title="${prod.marca} ${prod.modelo}">
@@ -175,8 +173,6 @@ const deteleCarrito = (prodId) => {
 const vaciarCarrito = ()=>{
     buttonVaciar.addEventListener("click" , ()=> {
         carrito = [];
-        console.log(carrito)
-        // actualizarCarrito();
         actualizarCarrito ()
     })
 }

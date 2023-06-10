@@ -12,7 +12,7 @@
         "sumergible": "Si",
         "cristal": "Zafiro",
         "cantidad": 1,
-        "imagen": "../assets/img/destacado-1.png"
+        "imagen": "assets/img/destacado-1.png"
     },
     {
         "id": 2,

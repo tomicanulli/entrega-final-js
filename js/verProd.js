@@ -5,15 +5,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
         mainProducto.innerHTML = '';
         verProducto = JSON.parse(localStorage.getItem('prod'))
         const { marca , modelo , precio, imagen, maquinaria, tamaño, cronografo, bisel, sumergible, acero, cristal } = verProducto
-        console.log(verProducto)
-        console.log(verProducto.precio)
         const sectionReturn = document.createElement('section');
        // sectionReturn.classList.add('navReturn')
         sectionReturn.innerHTML = `
             <ul class="navReturn">
-                <li><a href="./index.html">Inicio </a></li>
-                <li><a href="./index.html"> / ${marca}  </a></li>
-                <li><a href="./index.html"> /  ${modelo} </a></li>
+                <li><a href="../index.html">Inicio </a></li>
+                <li><a href="../index.html"> / ${marca}  </a></li>
+                <li><a href="../index.html"> /  ${modelo} </a></li>
                 <li>/ ${marca} ${modelo}</li>
             </ul>
 
@@ -43,7 +41,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     <li>* Sumergible: ${sumergible}</li>
                     <li>* Cristal: ${cristal}</li>
                 </ul>
-                <button onclick ="addCarrito(${verProducto.id})" id="buttonBuy"><a href="">Añadir al Carrito</a></button>
+                <button onclick ="addCarrito(${verProducto.id})" id="buttonBuy">Añadir al Carrito</button>
                 <button id="buttonWp"><a href="https://api.whatsapp.com/send?phone=543462649084">Solicitar vía Whatsapp</a></button>
             </div>
         `
