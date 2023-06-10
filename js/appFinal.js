@@ -42,12 +42,14 @@ async function traerProductos(){
         const prod = await fetch('../productos.json');
         const resp2 = await prod.json();
         localStorage.setItem('stockProd', JSON.stringify(resp2))
+        stockRelojes = JSON.parse(localStorage.getItem('stockProd'))
+        mostrarProd()
     }   
     catch(e){
         console.log(e)
     }
 }
-stockRelojes = JSON.parse(localStorage.getItem('stockProd'))
+//stockRelojes = JSON.parse(localStorage.getItem('stockProd'))
 
 const linkDolarBlue = "https://api.bluelytics.com.ar/v2/latest";
 const DOMDolar= document.addEventListener('DOMContentLoaded', traerDolar);
@@ -65,7 +67,7 @@ async function traerDolar (){
 }
 cotizacionUsd = JSON.parse(localStorage.getItem('cotiUsd'))
 
-
+function mostrarProd() {
 if(contenedorProductos){
     
     stockRelojes.forEach((prod) => {
@@ -100,6 +102,7 @@ if(contenedorProductos){
         })
         
     });
+}
 }
 document.addEventListener('DOMContentLoaded', ()=>{
     if(localStorage.getItem('carrito')){
