@@ -1,5 +1,6 @@
-node_modules/
 app.js/
 app2.js/
 borrado.js/
 primera-entrega.js/
+package-lock.json/
+package.json/
