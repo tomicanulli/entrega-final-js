@@ -40,9 +40,7 @@ document.addEventListener('DOMContentLoaded', traerProductos )
 async function traerProductos(){
     try{
         const prod = await fetch('./productos.json');
-        const resp2 = await prod.json();
-        localStorage.setItem('stockProd', JSON.stringify(resp2))
-        stockRelojes = JSON.parse(localStorage.getItem('stockProd'))
+        stockRelojes = await prod.json();
         mostrarProd()
     }   
     catch(e){
@@ -98,7 +96,7 @@ if(contenedorProductos){
         const verProd = document.getElementById(`img${prod.id}`);
         verProd.addEventListener("click" , ()=> {
             localStorage.setItem('prod', JSON.stringify(prod))
-            location.href = "producto.html"
+            location.href = "./pages/producto.html"
         })
         
     });
@@ -136,7 +134,7 @@ const actualizarCarrito = () => {
         let precioArs = prod.precio * 490;;
         divCarrito.innerHTML = `
                 <div class="imgCont">
-                    <img class="img-prod" src="./assets/img/destacado-${prod.id}.PNG" alt="${prod.marca} ${prod.modelo}" title="${prod.marca} ${prod.modelo}">
+                    <img class="img-prod" src="../assets/img/destacado-${prod.id}.PNG" alt="${prod.marca} ${prod.modelo}" title="${prod.marca} ${prod.modelo}">
                 </div>
                 <div class="detCont">
                     <h3> ${prod.marca} ${prod.modelo} </h3>
@@ -208,7 +206,7 @@ if(finalizarCompra){
                 confirmButtonText: "Aceptar",
             })
         } else {
-            location.href = "compra.html"
+            location.href = "./pages/compra.html"
             finCompra();
         }
     })

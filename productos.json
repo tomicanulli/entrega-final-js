@@ -12,7 +12,7 @@
         "sumergible": "Si",
         "cristal": "Zafiro",
         "cantidad": 1,
-        "imagen": "./assets/img/destacado-1.png"
+        "imagen": "../assets/img/destacado-1.png"
     },
     {
         "id": 2,
@@ -27,7 +27,7 @@
         "sumergible": "No",
         "cristal": "Mineral",
         "cantidad": 1,
-        "imagen": "./assets/img/destacado-2.png"
+        "imagen": "../assets/img/destacado-2.png"
     },
     {
         "id": 3,
@@ -42,7 +42,7 @@
         "sumergible": "No",
         "cristal": "Zafiro",
         "cantidad": 1,
-        "imagen": "./assets/img/destacado-3.png"
+        "imagen": "../assets/img/destacado-3.png"
     },
     {
         "id": 4,
@@ -57,7 +57,7 @@
         "sumergible": "No",
         "cristal": "Zafiro",
         "cantidad": 1,
-        "imagen": "./assets/img/destacado-4.png"
+        "imagen": "../assets/img/destacado-4.png"
     },
     {
         "id": 5,
@@ -72,7 +72,7 @@
         "sumergible": "No",
         "cristal": "Mineral",
         "cantidad": 1,
-        "imagen": "./assets/img/destacado-5.png"
+        "imagen": "../assets/img/destacado-5.png"
     },
     {
         "id": 6,
@@ -87,7 +87,7 @@
         "sumergible": "No",
         "cristal": "Mineral",
         "cantidad": 1,
-        "imagen": "./assets/img/destacado-6.png"
+        "imagen": "../assets/img/destacado-6.png"
     },
     {
         "id": 7,
@@ -102,7 +102,7 @@
         "sumergible": "No",
         "cristal": "Mineral",
         "cantidad": 1,
-        "imagen": "./assets/img/destacado-7.png"
+        "imagen": "../assets/img/destacado-7.png"
     },
     {
         "id": 8,
@@ -117,7 +117,7 @@
         "sumergible": "No",
         "cristal": "Mineral",
         "cantidad": 1,
-        "imagen": "./assets/img/destacado-8.png"
+        "imagen": "../assets/img/destacado-8.png"
     },
     {
         "id": 9,
@@ -132,7 +132,7 @@
         "sumergible": "No",
         "cristal": "Mineral",
         "cantidad": 1,
-        "imagen": "./assets/img/destacado-9.png"
+        "imagen": "../assets/img/destacado-9.png"
     },
     {
         "id": 10,
@@ -146,7 +146,7 @@
         "sumergible": "No",
         "cristal": "Mineral",
         "cantidad": 1,
-        "imagen": "./assets/img/destacado-10.png"
+        "imagen": "../assets/img/destacado-10.png"
     },
     {
         "id": 11,
@@ -161,6 +161,6 @@
         "sumergible": "No",
         "cristal": "Mineral",
         "cantidad": 1,
-        "imagen": "./assets/img/destacado-11.png"
+        "imagen": "../assets/img/destacado-11.png"
     }
 ]
