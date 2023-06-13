@@ -132,7 +132,7 @@ const actualizarCarrito = () => {
         let precioArs = prod.precio * cotizacionUsd;
         divCarrito.innerHTML = `
                 <div class="imgCont">
-                    <img class="img-prod" src="../assets/img/destacado-${prod.id}.PNG" alt="${prod.marca} ${prod.modelo}" title="${prod.marca} ${prod.modelo}">
+                    <img class="img-prod" src="${prod.imagen}" alt="${prod.marca} ${prod.modelo}" title="${prod.marca} ${prod.modelo}">
                 </div>
                 <div class="detCont">
                     <h3> ${prod.marca} ${prod.modelo} </h3>
@@ -213,28 +213,30 @@ if(prodCompra){
 }
 
 function finCompra() {
-    prodCompra.innerHTML= "";
-    carrito.forEach((prod) =>{
-        const trCompra = document.createElement('tr');
-        trCompra.classList.add('carritoInfo');
-        let precioArs = prod.precio * cotizacionUsd;;
-        let precioTotal = prod.precio * prod.cantidad;
-        let precioTotalArs = precioTotal * cotizacionUsd
-        trCompra.innerHTML = `
-            <td><div class="imgCont"> <img class="img-prod" src="./assets/img/destacado-${prod.id}.PNG" alt="${prod.marca} ${prod.modelo}" title="${prod.marca} ${prod.modelo}"> </div></td>
-            <td>${prod.marca} ${prod.modelo}</td>
-            <td>u$:${prod.precio} <br> Ar$ ${precioArs}</td>
-            <td>${prod.cantidad}</td>
-            <td>u$:${precioTotal} <br> Ar$ ${precioTotalArs} </td>
-        `
-        prodCompra.appendChild(trCompra);
+    if(prodCompra){
+        prodCompra.innerHTML= "";
+        carrito.forEach((prod) =>{
+            const trCompra = document.createElement('tr');
+            trCompra.classList.add('carritoInfo');
+            let precioArs = prod.precio * cotizacionUsd;;
+            let precioTotal = prod.precio * prod.cantidad;
+            let precioTotalArs = precioTotal * cotizacionUsd
+            trCompra.innerHTML = `
+                <td><div class="imgCont"> <img class="img-prod" src="${prod.imagen}" alt="${prod.marca} ${prod.modelo}" title="${prod.marca} ${prod.modelo}"> </div></td>
+                <td>${prod.marca} ${prod.modelo}</td>
+                <td>u$:${prod.precio} <br> Ar$ ${precioArs}</td>
+                <td>${prod.cantidad}</td>
+                <td>u$:${precioTotal} <br> Ar$ ${precioTotalArs} </td>
+            `
+            prodCompra.appendChild(trCompra);
 
-        const totalUs = carrito.reduce((acc, prod) => acc + (prod.precio*prod.cantidad), 0)
-        const totalArs = totalUs*cotizacionUsd;
-        totalCompra.innerHTML = `
-            <p>Total: U$${totalUs} / Ar$${totalArs}</p>
-        `
-    })
+            const totalUs = carrito.reduce((acc, prod) => acc + (prod.precio*prod.cantidad), 0)
+            const totalArs = totalUs*cotizacionUsd;
+            totalCompra.innerHTML = `
+                <p>Total: U$${totalUs} / Ar$${totalArs}</p>
+            `
+        })
+    }
 }
 if(prodCompra){
     finCompra();
@@ -242,7 +244,7 @@ if(prodCompra){
 
 if(returnCompra){
     returnCompra.addEventListener('click' , ()=>{
-        location.href = "index.html"
+        location.href = "../index.html"
     })
 }
 
