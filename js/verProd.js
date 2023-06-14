@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     if(localStorage.getItem('prod')){
         mainProducto.innerHTML = '';
         verProducto = JSON.parse(localStorage.getItem('prod'))
-        const { marca , modelo , precio, imagen, maquinaria, tamaño, cronografo, bisel, sumergible, acero, cristal } = verProducto
+        const {id, marca , modelo , precio, imagen, maquinaria, tamaño, cronografo, bisel, sumergible, acero, cristal } = verProducto
         const sectionReturn = document.createElement('section');
        // sectionReturn.classList.add('navReturn')
         sectionReturn.innerHTML = `
@@ -41,10 +41,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     <li>* Sumergible: ${sumergible}</li>
                     <li>* Cristal: ${cristal}</li>
                 </ul>
-                <button onclick ="addCarrito(${verProducto.id})" id="buttonBuy">Añadir al Carrito</button>
                 <button id="buttonWp"><a href="https://api.whatsapp.com/send?phone=543462649084">Solicitar vía Whatsapp</a></button>
             </div>
         `
         mainProducto.appendChild(prodDetails)
+
     }
 })

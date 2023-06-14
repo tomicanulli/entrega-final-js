@@ -8,7 +8,6 @@ const totalProd = document.getElementById('totalProd');
 const totalUs = document.getElementById('totalUs');
 const totalArs = document.getElementById('totalArs');
 const buttonPlus = document.getElementById('plusProd');
-const buttonLess = document.getElementById('lessProd');
 const finalizarCompra = document.getElementById('finalizarCompra');
 const prodCompra = document.getElementById('prodCompra');
 const returnCompra = document.getElementById('returnCompra');
@@ -65,41 +64,42 @@ async function traerDolar (){
 cotizacionUsd = JSON.parse(localStorage.getItem('cotiUsd'))
 
 function mostrarProd() {
-if(contenedorProductos){
-    
-    stockRelojes.forEach((prod) => {
-        const divProd = document.createElement('div');
-        let precioArs = prod.precio * cotizacionUsd;;
-        divProd.classList.add('contProdR');
-        divProd.innerHTML = `
-            <img id="img${prod.id}"class="img-prod" src="${prod.imagen}" alt="${prod.marca}-${prod.modelo}" title="${prod.marca}-${prod.modelo}">
-            <div class="priceCont">
-                <div class="prodDet">
-                    <h4>${prod.marca}</h4>
-                    <h2>${prod.modelo}</h2>
-                    <p>Precio: U$ <b>${prod.precio}</b></p>
-                    <p>Precio: AR$ <b>${precioArs}</b></p>
-                </div>
-            </div>
-            <button id="add${prod.id}" class="addCarrito">Añadir al Carrito</button>
-        `
-        contenedorProductos.appendChild(divProd);
-        const buttonCarrito = document.getElementById(`add${prod.id}`);
-        buttonCarrito.addEventListener("click" , ()=> {
-            if(stockRelojes){
-                addCarrito(prod.id)
-            }else{
-                verProd.push(carrito)
-            }
-        })
-        const verProd = document.getElementById(`img${prod.id}`);
-        verProd.addEventListener("click" , ()=> {
-            localStorage.setItem('prod', JSON.stringify(prod))
-            location.href = "./pages/producto.html"
-        })
+    if(contenedorProductos){
         
-    });
-}
+        stockRelojes.forEach((prod) => {
+            const divProd = document.createElement('div');
+            let precioArs = prod.precio * cotizacionUsd;;
+            divProd.classList.add('contProdR');
+            divProd.innerHTML = `
+                <img id="img${prod.id}"class="img-prod" src="${prod.imagen}" alt="${prod.marca}-${prod.modelo}" title="${prod.marca}-${prod.modelo}">
+                <div class="priceCont">
+                    <div class="prodDet">
+                        <h4>${prod.marca}</h4>
+                        <h2>${prod.modelo}</h2>
+                        <p>Precio: U$ <b>${prod.precio}</b></p>
+                        <p>Precio: AR$ <b>${precioArs}</b></p>
+                    </div>
+                </div>
+                <button id="add${prod.id}" class="addCarrito">Añadir al Carrito</button>
+            `
+            contenedorProductos.appendChild(divProd);
+            const buttonCarrito = document.getElementById(`add${prod.id}`);
+            buttonCarrito.addEventListener("click" , ()=> {
+                if(stockRelojes){
+                    addCarrito(prod.id)
+                }else{
+                    verProd.push(carrito)
+                    actualizarCarrito()
+                }
+            })
+            const verProd = document.getElementById(`img${prod.id}`);
+            verProd.addEventListener("click" , ()=> {
+                localStorage.setItem('prod', JSON.stringify(prod))
+                location.href = `./pages/producto.html`
+            })
+            
+        });
+    }
 }
 document.addEventListener('DOMContentLoaded', ()=>{
     if(localStorage.getItem('carrito')){
@@ -146,7 +146,7 @@ const actualizarCarrito = () => {
                 </div>
         `
         contenedorCarrito.appendChild(divCarrito);
-
+        
     })
 
     if (carrito.length === 0){
@@ -186,15 +186,17 @@ const plusOneProd = (prodId) => {
     // console.log(cantidadItem)
 }
 const lessOneProd = (prodId) => {
-    let prodPlus = carrito.find((prod) => prod.id == prodId)
-    prodPlus.cantidad--
+    let prodLees = carrito.find((prod) => prod.id == prodId)
+    prodLees.cantidad--;
+        if(prodLees.cantidad < 1){
+            prodLees.cantidad++
+        }
     actualizarCarrito()
-    // const cantidadItem = prodId.cantidad
-    // console.log(cantidadItem)
 }
+
 if(finalizarCompra){
     finalizarCompra.addEventListener('click' , ()=>{
-        if (carrito.length === 0){
+        if (carrito.length === 0 || carrito === []){
             Swal.fire({
                 title: "¡Tu carrito está vacio!",
                 text: "Agrega productos para continuar con la compra",
